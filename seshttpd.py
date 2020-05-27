@@ -30,7 +30,7 @@ while True:
         data = clientsocket.recv(1024).decode("utf-8")
         if not str(data):
             data = "GET / HTTP/1.1" #HACK: Handle empty requests
-        localfile = data.split("\n")[0].split(" ")[1].split("/",1)[1].split("?")[0]
+        localfile = data.split("\n")[0].split(" ")[1].split("/",1)[1].split("?")[0].replace("%20", " ")
         if localfile == "":
             localfile = "index.html"
         if os.path.isfile(localfile):
