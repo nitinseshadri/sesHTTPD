@@ -44,6 +44,7 @@ while True:
             filedata = open(localfile, "rb")
             output = filedata.read()
             clientsocket.send(output)
+            filedata.close()
             clientsocket.shutdown(1)
         else:
             print("GET", localfile, "404 Not Found -", str(address[0]))
