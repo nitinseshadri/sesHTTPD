@@ -33,6 +33,8 @@ while True:
         localfile = data.split("\n")[0].split(" ")[1].split("/",1)[1].split("?")[0].replace("%20", " ")
         if localfile == "":
             localfile = "index.html"
+        if os.path.isdir(localfile):
+            localfile = localfile.rstrip("/") + "/index.html"
         if os.path.isfile(localfile):
             print("GET", localfile, "200 OK -", str(address[0]))
             clientsocket.send(b"HTTP/1.1 200 OK\r\n")
